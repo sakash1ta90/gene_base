@@ -1,3 +1,3 @@
 module.exports = {
-  baseUrl: '/gene_base',
-}
+  publicPath: process.env.NODE_ENV === "production" ? "/gene_base" : "/"
+};
