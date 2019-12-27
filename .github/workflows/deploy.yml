@@ -30,9 +30,6 @@ jobs:
     - name: Lint
       run: npm run lint
 
-    - name: Build
-      run: npm run build
-
     - name: Deploy
       env:
         ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
@@ -44,15 +41,6 @@ jobs:
         --no-clipboard
         --token ${ZEIT_TOKEN}
         > ${HOME}/deployment-url.txt
-
-    - name: Alias with PR number
-      env:
-        ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
-      run: >
-        now alias
-        --token ${ZEIT_TOKEN}
-        `cat ${HOME}/deployment-url.txt`
-        ${{ github.event.repository.name }}-pr-${{ github.event.number }}.now.sh
 
   post_comment_review_app_url:
     name: Post comment that review app URL when PR opened
